@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.mysql.jdbc.exceptions.jdbc4.MySQLDataException;
 
+import DAO.ConnectionFactory;
 import DAO.Crud_Cliente;
 import HelperCampos.Pega_Campos;
 import Objetos.Cliente;
@@ -47,19 +48,18 @@ public class Home extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Cliente cliente = new Cliente();
-		Pega_Campos campos = new Pega_Campos(request);
-		String nome = campos.getNome();
-		cliente.setNome_real(nome);
-		String email = campos.getEmail();
-		cliente.setEmail(email);
-		String senha = campos.getSenha();
-		cliente.setSenha(senha);
-		
-		
-		Crud_Cliente crud = new Crud_Cliente();
 		try {
-			crud.conecta_mysql();
+			Cliente cliente = new Cliente();
+			Pega_Campos campos = new Pega_Campos(request);
+			String nome = campos.getNome();
+			cliente.setNome_real(nome);
+			String email = campos.getEmail();
+			cliente.setEmail(email);
+			String senha = campos.getSenha();
+			cliente.setSenha(senha);
+		
+			Crud_Cliente crud = new Crud_Cliente();
+			crud.inserir_Cliente(cliente);
 			
 			
 		} catch (Exception e) {
