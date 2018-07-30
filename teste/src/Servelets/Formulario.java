@@ -2,9 +2,6 @@ package Servelets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,28 +9,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.mysql.jdbc.exceptions.jdbc4.MySQLDataException;
-import com.sun.scenario.effect.impl.state.LinearConvolveRenderState;
-
-import DAO.ConnectionFactory;
 import DAO.Crud_Cliente;
 import HelperCampos.Pega_Campos;
 import Objetos.Cliente;
 
 /**
- * Servlet implementation class Home
+ * Servlet implementation class Formulario
  */
-@WebServlet(description = "Pagina Inicial", urlPatterns = { "/Home" })
-public class Home extends HttpServlet {
+@WebServlet("/Formulario")
+public class Formulario extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private String Nome;
-	private String senha;
-	private String email;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Home() {
+    public Formulario() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -42,9 +32,7 @@ public class Home extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		
-		request.getRequestDispatcher("index.jsp").include(request, response);
+		request.getRequestDispatcher("Formulario.jsp").include(request, response);
 	}
 
 	/**
@@ -53,24 +41,25 @@ public class Home extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
 			PrintWriter out = response.getWriter();
-			Cliente cliente = new Cliente();
 			Pega_Campos campos = new Pega_Campos(request);
-			String nome = campos.getNome();
-			cliente.setNome_real(nome);
-			String email = campos.getEmail();
-			cliente.setEmail(email);
-			String senha = campos.getSenha();
-			cliente.setSenha(senha);
-			
-			Crud_Cliente crud = new Crud_Cliente();
-			crud.inserir_Cliente(cliente);
-			
+			Cliente cliente = new Cliente();
+			boolean verifica_senha = campos.Conpara();
+			if (verifica_senha) {
+				cliente = campos.Atribuir_cliente();
+				Crud_Cliente crud = new Crud_Cliente();
+				crud.inserir_Cliente(cliente);
+				
+			}else{
+				out.println("<html>");
+				out.print("<header>");
+				out.print("<p>Tente Novamente</p>");
+				out.print("</header>");
+				out.println("</html>");
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		request.getRequestDispatcher("Teste.jsp").include(request, response);
-		
+		request.getRequestDispatcher("Formulario.jsp").include(request, response);
 	}
 
 }

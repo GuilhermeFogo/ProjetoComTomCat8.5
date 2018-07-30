@@ -8,8 +8,16 @@ public abstract class Pessoa extends Endereco {
 	private String nome_usuario;
 	private String senha;
 	private String telefone;
+	private String sexo;
 	
 	// get e sets
+	
+	public String getSexo() {
+		return sexo;
+	}
+	public void setSexo(String sexo) {
+		this.sexo = sexo;
+	}
 	public String getNome_real() {
 		return nome_real;
 	}
