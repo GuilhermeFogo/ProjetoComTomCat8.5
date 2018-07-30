@@ -1,16 +1,13 @@
-<%@page import="Objetos.Cliente"%>
-<%@page import="java.util.List"%>
-<%@page import="DAO.Crud_Cliente"%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="O melhor site que existe">
 <meta http-equiv="refresf" content="">
-<title>ProjectLoki</title>
+<title>ProjectLoki-- Cadastro</title>
 	
 	<!-- Botstrap -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" 
@@ -70,66 +67,69 @@
 		</div>
 		</div>
 	</div>
-<header class="container-fluid">
-	<div id="carrossel_1" class="carousel slide" data-ride="carousel">
-  <ol class="carousel-indicators">
-    <li data-target="#carrossel_1" data-slide-to="0" class="active"></li>
-    <li data-target="#carrossel_1" data-slide-to="1"></li>
-    <li data-target="#carrossel_1" data-slide-to="2"></li>
-  </ol>
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img class="d-block w-100" src="https://catracalivre.com.br/wp-content/uploads/2013/08/rock_wallpaper_fullhd_by_goro85-d45o08q-5108.png" alt="Rock" height="950px">
-      	<div class="carousel-caption d-none d-md-block">
-    		<h2>Rock e Metal</h2>
-  		</div>
-    </div>
-    <div class="carousel-item">
-      <img class="d-block w-100 h-50" src="http://4.bp.blogspot.com/-Tgyr_wxgukc/Vhrcismj97I/AAAAAAAACPc/1rzN9WT2780/s1600/os-cantores-mais-pop-nos-anos-90.jpg" alt="Anos 90" height="950px">
-      <div class="carousel-caption d-none d-md-block">
-    		<h2>Anos 90</h2>
-  		</div>
-    </div>
-    <div class="carousel-item">
-      <img class="d-block w-100" src="https://highape.com/images/8fe82ca79a6a5067490a22eb701ac531house_music_hd_wallpaper_18.jpg" alt="Third slide" height="950px">
-      <div class="carousel-caption d-none d-md-block">
-    		<h2>Eletronicas</h2>
-  		</div>
-    </div>
-  </div>
-  <a class="carousel-control-prev" href="#carrossel_1" role="button" data-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="sr-only">Previous</span>
-  </a>
-  <a class="carousel-control-next" href="#carrossel_1" role="button" data-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="sr-only">Next</span>
-  </a>
-</div>
-</header>
-
-<div class="container">
-	<div class="row">
-		<form action="./Home" method="post" class="col-12">
-			<div class="col-6">
-				<label>Nome Real:</label>
-				<input type="text" name="campo_nome_real" required="on" 
-				placeholder="Digite seu Nome" class="form-control">
-			</div>
+	<div class="container">
+		<div class="row">
+			<div class="col-12">
+				<form action="./Formulario" method="post">
+					<h3> Cadastro</h3>
+					<div class="col-6">
+						<label>Nome Real:</label>
+						<input type="text" name="campo_nome_real" required="on" placeholder="Digite seu Nome" class="form-control">
+				</div>
 			<div class="col-6">
 				<label>Senha:</label>
 				<input type="password" name="campo_senha" required="on" placeholder="Digite sua senha" class="form-control">
 			</div>
 			<div class="col-6">
+				<label>Confirmar Senha:</label>
+				<input type="password" name="campo_senha_conf" placeholder="Confirmar Senha" class="form-control">
+			</div>
+			<div class="col-6">
 				<label>Email:</label>
 				<input type="email" name="campo_email" required="on" placeholder="Digite seu Email" class="form-control">
 			</div>
+
+			<div class="col-6">
+				<div class="form-ckeck">
+					<label>Sexo:</label>
+				<br>
+				<label class="form-ckeck-label">Masculino</label>
+				<input type="radio" name="campo_sexo" required="on" class="form-ckeck-input" value="Masculino">
+				</div>
+
+				<div class="form-ckeck">
+						<label class="form-ckeck-label">Feminino</label>
+						<input type="radio" name="campo_sexo" required="on"class="form-ckeck-input" value="Feminino">
+					</div>
+			</div>
+			
+			<h3>Localidade</h3>
+
+				<div class="col-6">
+					<label>Rua:</label>
+					<input type="text" name="campo_rua" placeholder="Digite sua Rua" required="on" class="form-control">
+				</div>
+
+				<div class="col-6">
+					<label>Cep:</label>
+					<input type="text" name="campo_cep" placeholder="Digite seu CEP" required="on" class="form-control">
+				</div>
+				
+				<div class="col-6">
+					<label>Complemento:</label>
+					<textarea type="text" name="campo_descricao" placeholder="Digite sua Rua" required="on" class="form-control">
+					</textarea>
+				</div>
+				
 			<div class="col-6">
 				<br>
-				<input type="submit" name="enviar" class="btn btn-md btn-primary" value="Enviar">
+				<input type="submit" name="enviar" class="btn btn-md btn-primary" value="Cadastar">
 			</div>
-		</form>
+				</form>
+			</div>
+		</div>
 	</div>
-</div>
+	
+	
 </body>
 </html>
